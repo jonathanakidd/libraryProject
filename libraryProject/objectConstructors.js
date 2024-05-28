@@ -16,23 +16,26 @@ function book(title, author, pages, read) {
 
 function addBook(book) {
     myLibrary.push(book);
+    displayBook(book);
 }
 
 //Loop through books to add rows
-function displayBooks (library) {
+function initializeBooks (library) {
     for (let i = 0; i < library.length; i++) {
-        console.log(library)
-        console.log(Object.values(i));
-        let table = document.getElementById('books');
-        let row = table.insertRow(-1);
-        let cell1 = row.insertCell(0);
-        let cell2 = row.insertCell(1);
-        let cell3 = row.insertCell(2);
-        let cell4 = row.insertCell(3);
-        cell1.innerHTML = library[i].title;
-        cell2.innerHTML = library[i].author;
-        cell3.innerHTML = library[i].numpages;
-        cell4.innerHTML = library[i].read;
+       displayBook(library[i]);
     }
 }
 
+function displayBook(bookObject) {
+    let table = document.getElementById('books');
+    let row = table.insertRow(-1);
+    row.setAttribute("id", bookObject.title)
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    cell1.innerHTML = bookObject.title;
+    cell2.innerHTML = bookObject.author;
+    cell3.innerHTML = bookObject.numpages;
+    cell4.innerHTML = bookObject.read;
+}
