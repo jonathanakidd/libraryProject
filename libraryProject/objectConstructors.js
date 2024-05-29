@@ -29,7 +29,8 @@ function initializeBooks (library) {
 function displayBook(bookObject) {
     let table = document.getElementById('books');
     let row = table.insertRow(-1);
-    row.setAttribute("id", bookObject.title)
+    let rowID = 'book' + (document.querySelectorAll('tr').length - 1);
+    row.setAttribute("id", rowID )
     let cell1 = row.insertCell(0);
     let cell2 = row.insertCell(1);
     let cell3 = row.insertCell(2);
@@ -38,4 +39,8 @@ function displayBook(bookObject) {
     cell2.innerHTML = bookObject.author;
     cell3.innerHTML = bookObject.numpages;
     cell4.innerHTML = bookObject.read;
+    let buttonRow = document.querySelector('#' + rowID);
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    buttonRow.appendChild(deleteButton);
 }
