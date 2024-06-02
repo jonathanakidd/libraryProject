@@ -44,3 +44,16 @@ function displayBook(bookObject) {
     deleteButton.textContent = 'Delete';
     buttonRow.appendChild(deleteButton);
 }
+
+const btn = document.querySelector('#submission');
+btn.addEventListener("click", () => {
+    console.log('clicked');
+    const title = document.querySelector('#book_title').value;
+    const author = document.querySelector('#book_author').value;
+    const numpages = document.querySelector('#numPages').value;
+    const readStatus = document.querySelector('#readStatus').value;
+    const newBook = new book(title, author, numpages, readStatus);
+    addBook(newBook);
+
+
+})
