@@ -39,6 +39,7 @@ function displayBook(bookObject) {
     cell2.innerHTML = bookObject.author;
     cell3.innerHTML = bookObject.numpages;
     cell4.innerHTML = bookObject.read;
+    //Add buttons to toggle the reading status
     let buttonRow = document.querySelector('#' + rowID);
     const readButton = document.createElement('button');
     readButton.textContent = 'Read/Not Read';
@@ -47,6 +48,7 @@ function displayBook(bookObject) {
     readButton.addEventListener('click', () => {
         toggleRead(readButton)
     })
+    //Add buttons to delete row
     buttonRow.appendChild(readButton);
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
