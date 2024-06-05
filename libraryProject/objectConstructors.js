@@ -25,7 +25,7 @@ function initializeBooks (library) {
        displayBook(library[i]);
     }
 }
-
+//Add book to table to display
 function displayBook(bookObject) {
     let table = document.getElementById('books');
     let row = table.insertRow(-1);
@@ -40,20 +40,38 @@ function displayBook(bookObject) {
     cell3.innerHTML = bookObject.numpages;
     cell4.innerHTML = bookObject.read;
     let buttonRow = document.querySelector('#' + rowID);
+    const readButton = document.createElement('button');
+    readButton.textContent = 'Read/Not Read';
+    readButton.setAttribute('id', rowID);
+    readButton.setAttribute('class', 'readBtn');
+    readButton.addEventListener('click', () => {
+        toggleRead(readButton)
+    })
+    buttonRow.appendChild(readButton);
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Delete';
+    deleteButton.setAttribute('id', rowID);
+    deleteButton.setAttribute('class', 'deleteButton');
     buttonRow.appendChild(deleteButton);
 }
-
+//Get data from form to add book
 const btn = document.querySelector('#submission');
 btn.addEventListener("click", () => {
-    console.log('clicked');
     const title = document.querySelector('#book_title').value;
     const author = document.querySelector('#book_author').value;
     const numpages = document.querySelector('#numPages').value;
     const readStatus = document.querySelector('#readStatus').value;
     const newBook = new book(title, author, numpages, readStatus);
     addBook(newBook);
-
-
 })
+
+function toggleRead(button) {
+    id = button.id;
+    let readNotRead = document.querySelector('#'+ id + " > td:nth-child(4)");
+    if (readNotRead.innerHTML === 'Read') {
+        readNotRead.innerHTML = 'Not Read';
+    }
+    else {
+        readNotRead.innerHTML = 'Read';
+    }
+}
